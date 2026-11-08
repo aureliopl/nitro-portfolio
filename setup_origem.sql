@@ -1,0 +1,12 @@
+-- ============================================================
+--  Origem do lançamento (manual x confirmado por nota)
+--  Rode UMA vez no phpMyAdmin (aba SQL).
+--
+--  origem='manual' → posição digitada na mão (provisória, mostra ✎).
+--  origem='nota'   → criada/confirmada por uma nota de corretagem (padrão).
+--
+--  Ao importar o PDF, se o código casar com uma posição MANUAL aberta,
+--  a nota sobrescreve os dados (preço/data/lote/tipo) e marca como 'nota'
+--  (o sinal ✎ some). Linhas antigas ficam 'nota' (já vieram de notas).
+-- ============================================================
+ALTER TABLE apl_carteira ADD COLUMN origem ENUM('manual','nota') NOT NULL DEFAULT 'nota' AFTER status;

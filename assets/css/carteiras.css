@@ -1,0 +1,45 @@
+/* ============================================================
+   carteiras.css — página /carteiras (gestão das carteiras do usuário, Fase 3)
+   ============================================================ */
+.wrap{max-width:760px;margin:0 auto;padding:28px 20px 48px}
+h1{font-size:19px;font-weight:600;display:flex;align-items:center;gap:9px;margin-bottom:6px}
+.sub{font-size:13px;color:var(--muted);margin-bottom:24px;line-height:1.5}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;box-shadow:0 1px 2px rgba(27,43,94,.04);margin-bottom:20px}
+.card-title{font-size:13.5px;font-weight:600;margin-bottom:4px}
+.card-desc{font-size:12px;color:var(--muted);margin-bottom:16px;line-height:1.5}
+
+input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-family:var(--font);font-size:14px;outline:none;background:#fff}
+input:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.08)}
+
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:8px;border:none;cursor:pointer;font-family:var(--font);font-size:13px;font-weight:500;transition:.15s;white-space:nowrap}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:#4c1d95}
+.btn-ghost{background:#f9fafb;color:#6b7280;border:1px solid #e5e7eb}.btn-ghost:hover{background:#f3f4f6}
+.btn-danger{background:#fff;color:#b91c1c;border:1px solid #fecaca}.btn-danger:hover{background:#fef2f2}
+.btn-sm{padding:6px 11px;font-size:12px}
+.msg{font-size:12.5px;padding:9px 12px;border-radius:8px;margin-top:12px;display:none}
+.msg.ok{background:#dcfce7;color:#14532d}.msg.err{background:#fee2e2;color:#991b1b}
+
+.nova-row{display:flex;gap:10px}
+.nova-row input{flex:1}
+
+/* lista de carteiras */
+.wlist{display:flex;flex-direction:column;gap:10px}
+.wempty{font-size:13px;color:var(--muted);padding:14px 0}
+.wrow{display:flex;align-items:center;gap:12px;padding:13px 15px;border:1px solid var(--border);border-radius:11px;background:#fff}
+.wrow.on{border-color:#d6c8fb;background:#faf8ff}
+.w-ord{display:flex;flex-direction:column;gap:2px}
+.w-arrow{width:22px;height:18px;display:flex;align-items:center;justify-content:center;border:1px solid #e5e7eb;background:#f9fafb;color:#6b7280;border-radius:5px;cursor:pointer;font-size:8px;padding:0;line-height:1}
+.w-arrow:hover:not(:disabled){background:#eef0f6;color:#1b2b5e}
+.w-arrow:disabled{opacity:.35;cursor:default}
+.w-main{flex:1;min-width:0}
+.w-nome{font-size:14.5px;font-weight:600;color:#1b2b5e;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.w-badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;text-transform:uppercase;letter-spacing:.04em}
+.w-badge.def{background:#f1ecfe;color:#5b21b6}
+.w-badge.ativa{background:#dcfce7;color:#15803d}
+.w-meta{font-size:12px;color:var(--muted);margin-top:3px}
+.w-meta .w-na{color:#b0b8c9;font-style:italic}
+.w-acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:620px){
+  .wrow{flex-wrap:wrap}
+  .w-acts{width:100%;justify-content:flex-start;margin-top:4px}
+}

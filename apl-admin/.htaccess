@@ -1,0 +1,6 @@
+# Painel administrativo. O index.php e' servido pelo DirectoryIndex herdado da raiz.
+# Bloquear acesso direto aos includes internos (_admin.php etc.) — defense-in-depth
+# (eles ja rodam o guard, mas nem precisam ser servidos diretamente).
+<FilesMatch "^_.*\.php$">
+  Require all denied
+</FilesMatch>

@@ -1,0 +1,53 @@
+# URLs limpas e protecao de arquivos internos
+RewriteEngine On
+
+# /ranking -> ranking.php
+RewriteRule ^ranking/?$ ranking.php [L,QSA]
+
+# /nitro -> nitro.php
+RewriteRule ^nitro/?$ nitro.php [L,QSA]
+
+# /betha -> betha.php (carteira de simulacao, pessoal do super_admin)
+RewriteRule ^betha/?$ betha.php [L,QSA]
+
+# /lixeira -> lixeira.php
+RewriteRule ^lixeira/?$ lixeira.php [L,QSA]
+
+# /importar -> importar.php
+RewriteRule ^importar/?$ importar.php [L,QSA]
+
+# /config -> configuracao.php
+RewriteRule ^config/?$ configuracao.php [L,QSA]
+
+# /extrato -> extrato.php
+RewriteRule ^extrato/?$ extrato.php [L,QSA]
+
+# /perfil -> perfil.php
+RewriteRule ^perfil/?$ perfil.php [L,QSA]
+
+# /carteiras -> carteiras.php (gestao das carteiras do usuario)
+RewriteRule ^carteiras/?$ carteiras.php [L,QSA]
+
+# /apl-login -> apl-login.php (login do painel administrativo)
+RewriteRule ^apl-login/?$ apl-login.php [L,QSA]
+
+# Bloquear acesso direto a arquivos sensiveis e includes internos
+<FilesMatch "^(config(\.local)?|security|security-head|config_geral|vencimentos|avatars|auth|papeis|wallets|series|series_cli|sessao)\.php$">
+  Require all denied
+</FilesMatch>
+
+# Bloquear download dos scripts SQL
+<FilesMatch "\.sql$">
+  Require all denied
+</FilesMatch>
+
+# Bloquear a documentacao interna (o "cerebro" do projeto nao vai para o docroot,
+# mas se algum .md escapar para la, ele nao fica publico)
+<FilesMatch "\.(md|markdown)$">
+  Require all denied
+</FilesMatch>
+
+Options -Indexes
+DirectoryIndex index.php
+# Arquivos internos nunca são servidos pelo Apache.
+RewriteRule ^(?:\.git|tests|storage)(?:/|$) - [F,L]

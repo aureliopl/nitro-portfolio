@@ -1,0 +1,25 @@
+# ── Segredos: NUNCA versionar ──────────────────────────────
+config.local.php
+
+# ── macOS ──────────────────────────────────────────────────
+.DS_Store
+**/.DS_Store
+
+# ── Config local + tooling do Claude Code ──────────────────
+.claude/
+.agents/
+skills-lock.json
+
+# ── Editores ───────────────────────────────────────────────
+.vscode/
+.idea/
+
+/storage/*
+!/storage/.htaccess
+/uploads/avatars/*
+!/uploads/avatars/.htaccess
+*.log
+*.sql.gz
+*.pem
+*.key
+.env*

@@ -1,0 +1,5 @@
+# Avatares enviados pelos usuarios nao vao para o git — mas a pasta (e o .htaccess)
+# precisam existir no deploy. Versiona so este .gitignore e o .htaccess.
+*
+!.gitignore
+!.htaccess

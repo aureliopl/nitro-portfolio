@@ -1,0 +1,119 @@
+/* ============================================================
+   ranking.css — página /ranking
+   Layout: as 3 carteiras (Carteira · Nitro · Betha) num container só.
+   Desktop = grid de 3 colunas; mobile = cards deslizáveis (scroll-snap).
+   Cabeçalho (título + KPIs) fica na 1ª dobra; a lista de ativos rola
+   DENTRO da coluna (thead fixo). Scroll só para ver o restante dos ativos.
+   ============================================================ */
+.container{max-width:100%;margin:0 auto;padding:22px 20px 40px}
+.badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:500;white-space:nowrap;line-height:1.7}
+.b-pos{background:#dcfce7;color:#14532d}.b-neg{background:#fee2e2;color:#991b1b}.b-zero{background:#f1f3f8;color:#6b7280}
+.num{font-family:var(--mono);font-size:11.5px}
+
+/* ── cabeçalho da página ── */
+.rank-head{margin:2px 2px 16px}
+.rank-h1{font-size:18px;font-weight:600;color:var(--text)}
+.rank-hsub{font-size:12px;color:var(--muted);margin-top:3px}
+.rank-hsub #last-update{font-family:var(--mono)}
+
+/* ── grid das colunas ── */
+.rankings{display:grid;gap:18px;align-items:start}
+.rankings.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.rankings.cols-1{grid-template-columns:minmax(0,760px);justify-content:center}
+
+/* ── coluna = card de uma carteira ── */
+.rank-col{background:var(--surface);border-radius:14px;border:1px solid var(--border);overflow:hidden;box-shadow:0 1px 2px rgba(27,43,94,.04);display:flex;flex-direction:column;min-width:0}
+.rank-col.pessoal{border-top:3px solid #7c3aed}
+.rank-col.terceiros{border-top:3px solid #d97706}
+.rank-col.betha{border-top:3px solid #0d9488}
+.rank-col-head{padding:14px 18px 14px;border-bottom:1px solid var(--border);background:#f8fafd}
+.rank-title{font-size:13px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.rank-title .pill{font-size:9.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:20px}
+.rank-title .pill.pessoal{background:#ede9fe;color:#5b21b6}
+.rank-title .pill.terceiros{background:#fef3c7;color:#92400e}
+.rank-title .pill.betha{background:#ccfbf1;color:#115e59}
+
+/* ── mini-KPIs (sempre visíveis na 1ª dobra) ── */
+.rank-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.rank-kpis .kpi{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.rank-kpis .k-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:600}
+.rank-kpis .k-val{font-family:var(--mono);font-size:15px;font-weight:600;white-space:nowrap}
+.rank-kpis .k-val .badge{font-size:11px;padding:2px 7px}
+
+/* ── tabela rolável (thead fixo; ticker fixo na horizontal) ── */
+/* cards completos: sem scroll vertical interno (a página inteira rola).
+   overflow-x:auto fica só de rede de segurança em telas muito estreitas. */
+.rank-tbl{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.rank-col table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:0}
+.rank-col th{padding:8px 14px;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;text-align:left;background:#f8fafd;z-index:2}
+.rank-col th.r{text-align:right}
+.rank-col td{padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:middle;white-space:nowrap}
+.rank-col td.r{text-align:right}
+.rank-col tr:last-child td{border-bottom:none}
+.rank-col tbody tr:hover td{background:var(--hover)}
+/* 1ª coluna (ticker) ancorada quando a coluna for estreita demais */
+.rank-col th:first-child,.rank-col td:first-child{position:sticky;left:0;background:var(--surface)}
+.rank-col th:first-child{z-index:3;background:#f8fafd}
+.rank-col tbody tr:hover td:first-child{background:var(--hover)}
+.rank-pos{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--border);font-size:10px;font-weight:600;color:var(--muted);margin-right:8px;font-family:var(--mono);flex-shrink:0}
+.rank-pos.gold{background:#fef3c7;color:#92400e}.rank-pos.silver{background:#f1f5f9;color:#475569}.rank-pos.bronze{background:#fdf4ee;color:#9a3412}
+.ops-count{font-size:10px;color:var(--muted);margin-left:6px}
+.rank-empty{text-align:center;padding:36px 20px;color:var(--muted);font-size:12.5px}
+
+/* ── sequência: até 10 últimos resultados encerrados (antigo → recente) ── */
+.seq{display:inline-flex;gap:3px;align-items:center;justify-content:flex-end}
+.seq i{width:11px;height:11px;border-radius:3px;display:block;cursor:default;flex:0 0 auto}
+.seq i.w{background:#86efac}
+.seq i.l{background:#fca5a5}
+.seq i.z{background:#e2e8f0}
+.seq-empty{color:var(--muted);font-size:12px}
+
+/* ── MOBILE: cards deslizáveis (scroll-snap horizontal) ── */
+@media(max-width:900px){
+  .rankings.cols-3{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding-bottom:6px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .rankings.cols-3::-webkit-scrollbar{display:none}
+  .rankings.cols-3 .rank-col{flex:0 0 87%;scroll-snap-align:center}
+}
+@media(max-width:560px){
+  .rankings.cols-3 .rank-col{flex:0 0 92%}
+  .rank-col th,.rank-col td{padding-left:12px;padding-right:12px}
+}
+
+/* ── ticker clicável + modal de detalhe da ação ── */
+.rk-link{font-family:var(--mono);font-weight:600;font-size:12.5px;color:var(--text);text-decoration:none;border-bottom:1px dashed transparent;cursor:pointer}
+.rk-link:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.ac-ov{position:fixed;inset:0;background:rgba(27,43,94,.45);display:none;align-items:center;justify-content:center;z-index:200;padding:24px}
+.ac-ov.show{display:flex}
+.ac-modal{background:var(--surface);border-radius:18px;width:100%;max-width:520px;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(27,43,94,.28);overflow:hidden}
+.ac-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 22px 14px;border-bottom:1px solid var(--border)}
+.ac-htitle{display:flex;align-items:center;gap:10px}
+.ac-tk{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--text)}
+.ac-ctx{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px}
+.ac-ctx.pess{background:#ede9fe;color:#5b21b6}
+.ac-ctx.terc{background:#fef3c7;color:#92400e}
+.ac-ctx.bet{background:#ccfbf1;color:#115e59}
+.ac-close{border:none;background:none;font-size:26px;line-height:1;color:#94a3b8;cursor:pointer;padding:0 4px}
+.ac-close:hover{color:var(--text)}
+.ac-resumo{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:16px 22px;border-bottom:1px solid var(--border)}
+.ac-stat{background:#f8fafd;border:1px solid var(--border);border-radius:10px;padding:10px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px}
+.ac-k{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+.ac-v{font-size:17px;font-weight:600;font-family:var(--mono)}
+.ac-body{padding:14px 22px 20px;overflow-y:auto}
+.ac-sec{font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#9aa6c4;margin-bottom:8px}
+.ac-op{padding:10px 0;border-bottom:1px solid var(--border)}
+.ac-op:last-child{border-bottom:none}
+.ac-op-top{display:flex;align-items:center;gap:7px}
+.ac-op-top .code{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--text)}
+.ac-op .badge-put{background:#fff0e6;color:#9a3412;padding:1px 8px;border-radius:20px;font-size:10px;font-weight:600}
+.ac-op .badge-call{background:#e8f0ff;color:#1e3a8a;padding:1px 8px;border-radius:20px;font-size:10px;font-weight:600}
+.ac-op-res{margin-left:auto}
+.ac-op-sub{font-size:11.5px;color:var(--muted);font-family:var(--mono);margin-top:4px;line-height:1.5}
+.ac-foot{font-size:11px;color:var(--muted);margin-top:14px;line-height:1.5}
+@media(max-width:560px){
+  .ac-ov{padding:14px 12px}
+  .ac-modal{max-width:none;max-height:90vh}
+  .ac-head{padding:18px 18px 12px}
+  .ac-resumo{padding:14px 18px;gap:8px}
+  .ac-v{font-size:15px}
+  .ac-body{padding:14px 18px 20px}
+}

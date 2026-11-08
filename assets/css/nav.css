@@ -1,0 +1,55 @@
+/* ============================================================
+   nav.css — menu de navegação (markup em partials/nav.php).
+   Editar a aparência da nav = SÓ aqui.
+   ============================================================ */
+.nav{background:#fff;border-bottom:1px solid #e7ebf3;position:sticky;top:0;z-index:90;box-shadow:0 1px 3px rgba(27,43,94,.04)}
+.nav-inner{max-width:1400px;margin:0 auto;padding:0 22px;display:flex;align-items:center;height:58px;gap:8px;overflow:visible}
+.nav-left{display:flex;align-items:center;gap:3px;min-width:0;overflow-x:auto;scrollbar-width:none}
+.nav-left::-webkit-scrollbar{display:none}
+.nav .nav-link{color:#64719a;text-decoration:none;font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:10px;transition:.15s;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;background:none}
+.nav .nav-link:hover{color:#1b2b5e;background:#f3f5fb}
+.nav .nav-link.active{color:#5b21b6;background:#f1ecfe;font-weight:600}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:11px}
+.nav .nav-nitro{color:#b45309;background:#fff7ed;border:1px solid #fed7aa;font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:.15s;white-space:nowrap}
+.nav .nav-nitro:hover{background:#ffedd5}
+.nav .nav-nitro.active{background:#fde68a;border-color:#f59e0b;color:#92400e}
+.nav-user{position:relative}
+.nav-user-btn{display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid #e7ebf3;border-radius:10px;padding:5px 9px 5px 6px;cursor:pointer;font-family:inherit;color:#1b2b5e;transition:.15s}
+.nav-user-btn:hover{background:#f3f5fb}
+.nav-ava{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#5b21b6,#7c3aed);color:#fff;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+img.nav-ava{object-fit:cover}
+.nav-uname{font-size:13px;font-weight:600;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nav-caret{font-size:9px;color:#94a3b8;transition:.2s}
+.nav-user.open .nav-caret{transform:rotate(180deg)}
+.nav-menu{position:absolute;right:0;top:calc(100% + 8px);background:#fff;border:1px solid #e7ebf3;border-radius:12px;box-shadow:0 14px 36px rgba(27,43,94,.16);min-width:200px;padding:6px;display:none;z-index:50}
+.nav-user.open .nav-menu{display:block}
+.nav-menu .mhead{padding:9px 11px 7px;border-bottom:1px solid #eef1f7;margin-bottom:5px}
+.nav-menu .mhead .mn{font-size:13px;font-weight:600;color:#1b2b5e}
+.nav-menu .mhead .me{font-size:11px;color:#94a3b8;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav-menu a{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:8px;font-size:13px;color:#334155;text-decoration:none}
+.nav-menu a:hover{background:#f3f5fb;color:#1b2b5e}
+.nav-menu .sep{height:1px;background:#eef1f7;margin:5px 4px}
+.nav-menu a.danger{color:#b91c1c}.nav-menu a.danger:hover{background:#fef2f2}
+
+/* nome do usuario + carteira ativa (coluna no botao da nav) */
+.nav-ucol{display:flex;flex-direction:column;align-items:flex-start;line-height:1.15;min-width:0}
+.nav-uwallet{font-size:10.5px;color:#7c3aed;font-weight:600;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* seletor de carteira no dropdown (estilo "mudar de conta") */
+.nav-wallet{margin:0 0 5px}
+.nav-wallet-toggle{width:100%;display:flex;align-items:center;gap:8px;background:#f7f5ff;border:1px solid #ece8fb;border-radius:9px;padding:8px 11px;cursor:pointer;font-family:inherit;color:#1b2b5e;text-align:left}
+.nav-wallet-toggle:hover{background:#f1ecfe}
+.nav-wallet-toggle .nw-cur{font-size:13px;font-weight:600;color:#5b21b6;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nav-wallet-toggle .nw-sub{font-size:11px;color:#94a3b8;margin-left:auto}
+.nav-wallet-toggle .nw-arrow{font-size:9px;color:#94a3b8;transition:.2s}
+.nav-wallet.open .nav-wallet-toggle .nw-arrow{transform:rotate(90deg)}
+.nav-wallet-list{display:none;margin-top:4px;padding-top:4px;border-top:1px dashed #eef1f7;max-height:240px;overflow-y:auto}
+.nav-wallet.open .nav-wallet-list{display:block}
+.nav-wallet-list .nw-item{width:100%;display:flex;align-items:center;gap:9px;padding:8px 11px;border:0;border-radius:8px;background:none;font-family:inherit;font-size:12.5px;color:#334155;cursor:pointer;text-align:left;text-decoration:none}
+.nav-wallet-list .nw-item:hover{background:#f3f5fb;color:#1b2b5e}
+.nav-wallet-list .nw-item.on{color:#5b21b6;font-weight:600}
+.nav-wallet-list .nw-check{width:14px;flex-shrink:0;color:#5b21b6;font-size:12px}
+.nav-wallet-list .nw-nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nav-wallet-list .nw-new{color:#15803d;font-weight:600}
+.nav-wallet-list .nw-manage{color:#64719a}
+@media(max-width:600px){.nav-ucol{display:none}}

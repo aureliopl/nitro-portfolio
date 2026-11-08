@@ -1,0 +1,13 @@
+/* ============================================================
+   base.css — fundação compartilhada por todas as páginas internas
+   (variáveis de tema, reset e body). Carregar SEMPRE primeiro.
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --nav:#1b2b5e; --bg:#edf0f8; --surface:#fff; --text:#1b2b5e; --muted:#6b7aa0;
+  --border:#e2e8f2; --hover:#f5f8ff; --accent:#5b21b6;
+  --pos:#15803d; --neg:#b91c1c;
+  --font:'Inter',-apple-system,sans-serif;
+  --mono:'JetBrains Mono','Consolas',monospace;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}

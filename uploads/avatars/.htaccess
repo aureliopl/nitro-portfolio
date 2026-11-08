@@ -1,0 +1,7 @@
+# Pasta de uploads de avatares: servir SO imagens estaticas; nunca executar codigo.
+Options -Indexes
+
+# Bloqueia qualquer extensao executavel/perigosa (so gravamos jpg/png/webp aqui).
+<FilesMatch "\.(?i:php|phtml|phps|phar|cgi|pl|py|sh|asp|aspx|jsp|js|html?|htaccess)$">
+  Require all denied
+</FilesMatch>
